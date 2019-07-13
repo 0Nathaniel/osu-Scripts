@@ -15,7 +15,6 @@ for bmap in mappool:
 	r = requests.get(f'https://osu.ppy.sh/api/get_beatmaps?k={apiKey}&b={bmapId}')
 	rJson = r.json()[0]
 	t = '\t'
-	#outputString += f'{rJson['beatmap_id']}\t{rJson['atrist']}\t{rJson['title']}\t{rJson['version']}\t{rJson['creator']}\t{math.round(float(rJson['difficultyrating']),2)}\t{rJson['bpm']}\t{rJson['total_length']}\n'
 	fileOut.write('https://osu.ppy.sh/b/' + rJson['beatmap_id'] + t 
 					+ rJson['artist'] + t
 					+ rJson['title'] + t

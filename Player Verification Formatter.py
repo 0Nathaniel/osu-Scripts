@@ -1,19 +1,19 @@
 import requests
 from settings import apiKey
-file = open("players.txt")
-players = []
 
-for line in file:
-	parts = line.split('\n')
-	players.append(parts[0])
-file.close()
+with open("players.txt") as f:
+    # Filters out any empty lines
+    players = list(filter(None, (line.rstrip() for line in f)))
 
-fileOut = open('playersOut.txt', 'w+')
-for player in players:
-		r = requests.get(f'https://osu.ppy.sh/api/get_user?k={apiKey}&u={player}')
-		if not r.json():
-			print('User',player,'does not exist!')
-			continue
-		rJson = r.json()[0]
-		fileOut.write(player + ', ' + rJson['user_id'] + ', ' + rJson['country'] + '\n')
-fileOut.close()
+with open('playersOut.txt', 'w+') as fout:
+    for i, player in enumerate(players):
+        req = requests.get(f'https://osu.ppy.sh/api/get_user?k={apiKey}&u={player}')
+        
+        if req.status_code != 200:
+            print('\rSomething went wrong getting info for', player)
+            continue
+        
+        playerJson = req.json()[0]
+        fout.write(player + ', ' + playerJson['user_id'] + ', ' + playerJson['country'] + '\n')
+        
+        print(f'\r[{i + 1}/{len(players)}]', end='')

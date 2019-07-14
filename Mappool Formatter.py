@@ -1,27 +1,29 @@
 import requests
 from settings import apiKey
 
-file = open("mappool.txt")
-mappool = []
+with open("mappool.txt") as f:
+    # Filters out any empty lines
+    mappool = list(filter(None, (line.rstrip() for line in f)))
 
-for line in file:
-	parts = line.split('\n')
-	mappool.append(parts[0])
-file.close()
+with open('mappoolOut.txt', 'w+') as fout:
+    for i, bmap in enumerate(mappool):
+        bmapId = bmap[len('https://osu.ppy.sh/b/'):]
+        
+        req = requests.get(f'https://osu.ppy.sh/api/get_beatmaps?k={apiKey}&b={bmapId}')
+        if req.status_code != 200:
+            print('\rSomething went wrong getting info for beatmap ID ', bmapId)
+            continue
+        
+        bmapJson = req.json()[0]
+        t = '\t'
+        fout.write(bmap + t
+                   + bmapJson['artist'] + t
+                   + bmapJson['title'] + t
+                   + bmapJson['version'] + t
+                   + bmapJson['creator'] + t
+                   + str(round(float(bmapJson['difficultyrating']), 2)) + t
+                   + bmapJson['bpm'] + t
+                   + bmapJson['total_length'] + t
+                   + '\n')
 
-fileOut = open('mappoolOut.txt', 'w+')
-for bmap in mappool:
-	bmapId = bmap[len('https://osu.ppy.sh/b/'):]
-	r = requests.get(f'https://osu.ppy.sh/api/get_beatmaps?k={apiKey}&b={bmapId}')
-	rJson = r.json()[0]
-	t = '\t'
-	fileOut.write('https://osu.ppy.sh/b/' + rJson['beatmap_id'] + t 
-					+ rJson['artist'] + t
-					+ rJson['title'] + t
-					+ rJson['version'] + t
-					+ rJson['creator'] + t
-					+ str(round(float(rJson['difficultyrating']), 2)) + t
-					+ rJson['bpm'] + t
-					+ rJson['total_length'] + t
-					+ '\n')
-fileOut.close()
+        print(f'\r[{i + 1}/{len(mappool)}]', end='')

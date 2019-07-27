@@ -14,6 +14,6 @@ with open('playersOut.txt', 'w+') as fout:
             continue
         
         playerJson = req.json()[0]
-        fout.write(player + ', ' + playerJson['user_id'] + ', ' + playerJson['country'] + '\n')
+        fout.write(playerJson['username'] + ', ' + playerJson['user_id'] + ', ' + playerJson['country'] + '\n')
         
         print(f'\r[{i + 1}/{len(players)}]', end='')

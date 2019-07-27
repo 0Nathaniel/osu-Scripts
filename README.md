@@ -2,7 +2,7 @@
 Scripts to help with tournament moderation/administration.
 
 **Player Verification Formatter**  
-Takes a list of player names and outputs their name, ID and ISO country code.
+Takes a list of player names or IDS and outputs their name, ID and ISO country code.
 ```
 Input (players.txt) | Output (playersOut.txt)    
 ------------------- | ---------------------------

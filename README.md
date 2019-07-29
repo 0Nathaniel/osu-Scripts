@@ -34,6 +34,8 @@ Create a file named `settings.py` containing your [osu! api key](https://osu.ppy
 1. A file named `playersOut.txt` will be created containing the output.
 
 ## Mappool Formatter
-1. Create a file named `mappool.txt` containing one beatmap URL per line. URLs must be old site styled and not link to the beatmap set (`/s/`) E.g. `https://osu.ppy.sh/b/397535`.  
+1. Create a file named `mappool.txt` containing one beatmap URL per line.  URLs can be old or new style, but must 
+link to a beatmap, not a map set.
+E.g. `https://osu.ppy.sh/b/397535` or `https://osu.ppy.sh/beatmapsets/163112#osu/397535`.  
 1. Run the script: `python "Mappool Formatter.py"`.  
 1. A file named `mappoolOut.txt` will be created containing the output.

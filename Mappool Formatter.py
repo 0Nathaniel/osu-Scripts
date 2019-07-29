@@ -1,4 +1,5 @@
 import requests
+import re
 from settings import apiKey
 
 with open("mappool.txt") as f:
@@ -7,7 +8,8 @@ with open("mappool.txt") as f:
 
 with open('mappoolOut.txt', 'w+') as fout:
     for i, bmap in enumerate(mappool):
-        bmapId = bmap[len('https://osu.ppy.sh/b/'):]
+        # Finds the last digit in the url string
+        bmapId = re.findall(r'\d+', bmap)[-1]
         
         req = requests.get(f'https://osu.ppy.sh/api/get_beatmaps?k={apiKey}&b={bmapId}')
         if req.status_code != 200:
@@ -16,14 +18,11 @@ with open('mappoolOut.txt', 'w+') as fout:
         
         bmapJson = req.json()[0]
         t = '\t'
-        fout.write(bmap + t
-                   + bmapJson['artist'] + t
-                   + bmapJson['title'] + t
-                   + bmapJson['version'] + t
+        fout.write('https://osu.ppy.sh/b/' + bmapId + t
                    + bmapJson['creator'] + t
                    + str(round(float(bmapJson['difficultyrating']), 2)) + t
                    + bmapJson['bpm'] + t
-                   + bmapJson['total_length'] + t
+                   + bmapJson['total_length']
                    + '\n')
 
         print(f'\r[{i + 1}/{len(mappool)}]', end='')

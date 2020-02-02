@@ -12,6 +12,9 @@ FreddieBenson       | Freddie Benson, 7342622, US
 FlyingTuna          | FlyingTuna, 9224078, KR    
 ```
 
+**Avatar Grabber**  
+Takes a list of player IDS and outputs a `<playerusername>.jpg` for each player. Ready to be used in the tourney client.
+
 **Mappool Formatter**  
 Takes in a list of beatmap URLs and outputs a bunch of info about the map.
 ```
@@ -33,9 +36,21 @@ Create a file named `settings.py` containing your [osu! api key](https://osu.ppy
 1. Run the script: `python "Player Verification Formatter.py"`.  
 1. A file named `playersOut.txt` will be created containing the output.
 
+## Avatar Grabber
+1. Create a file named `players.txt` containing one player name per line.  
+1. Run the script: `python "Avatar Grabber.py"`.  
+1. A directory names `icons/` will be created containing files for each users avatar.
+
 ## Mappool Formatter
 1. Create a file named `mappool.txt` containing one beatmap URL per line.  URLs can be old or new style, but must 
 link to a beatmap, not a map set.
 E.g. `https://osu.ppy.sh/b/397535` or `https://osu.ppy.sh/beatmapsets/163112#osu/397535`.  
 1. Run the script: `python "Mappool Formatter.py"`.  
 1. A file named `mappoolOut.txt` will be created containing the output.
+
+# Customisation
+To change what's output from the files, only a basic understanding of Python is required.
+
+Take a look at the [osu! API Reference V1](https://github.com/ppy/osu-api/wiki) and look up if the information you want is returned by the api. Then edit the script where it accesses the values in `playerJson` or `bmapJson`.
+
+E.g. From `playerJson['username']` to `playerJson['<some other value>']`

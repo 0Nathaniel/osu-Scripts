@@ -12,6 +12,9 @@ FreddieBenson       | Freddie Benson, 7342622, US
 FlyingTuna          | FlyingTuna, 9224078, KR    
 ```
 
+**Avatar Grabber**  
+Takes a list of player IDS and outputs a `<playerusername>.jpg` for each player. Ready to be used in the tourney client.
+
 **Mappool Formatter**  
 Takes in a list of beatmap URLs and outputs a bunch of info about the map.
 ```
@@ -32,6 +35,11 @@ Create a file named `settings.py` containing your [osu! api key](https://osu.ppy
 1. Create a file named `players.txt` containing one player name per line.  
 1. Run the script: `python "Player Verification Formatter.py"`.  
 1. A file named `playersOut.txt` will be created containing the output.
+
+## Avatar Grabber
+1. Create a file named `players.txt` containing one player name per line.  
+1. Run the script: `python "Avatar Grabber.py"`.  
+1. A directory names `icons/` will be created containing files for each users avatar.
 
 ## Mappool Formatter
 1. Create a file named `mappool.txt` containing one beatmap URL per line.  URLs can be old or new style, but must 

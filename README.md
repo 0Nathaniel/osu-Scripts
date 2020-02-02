@@ -47,3 +47,10 @@ link to a beatmap, not a map set.
 E.g. `https://osu.ppy.sh/b/397535` or `https://osu.ppy.sh/beatmapsets/163112#osu/397535`.  
 1. Run the script: `python "Mappool Formatter.py"`.  
 1. A file named `mappoolOut.txt` will be created containing the output.
+
+# Customisation
+To change what's output from the files, only a basic understanding of Python is required.
+
+Take a look at the [osu! API Reference V1](https://github.com/ppy/osu-api/wiki) and look up if the information you want is returned by the api. Then edit the script where it accesses the values in `playerJson` or `bmapJson`.
+
+E.g. From `playerJson['username']` to `playerJson['<some other value>']`

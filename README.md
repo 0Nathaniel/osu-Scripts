@@ -27,6 +27,17 @@ https://osu.ppy.sh/b/736215 | https://osu.ppy.sh/b/736215	Panda Eyes & Teminite	
 ```
 Note: `mappoolOut.txt` is tab separated and can be pasted into Excel / Google Sheets
 
+**Qualifier Lobby Score Grabber**
+Takes a match mp ID and  extracts each player's score for every map played.
+```
+Input                                          | Output (scores.txt)
+-----------------------------------------------|------------------------------
+py "Qualifier Lobby Score Grabber.py" 63914035 | 10764012	644782	454702	583059	422898	273094	625559	818564	724987	660406	290249
+                                               | 10625283	998179	932252	448007	699542	480633	478420	644893	1053060	638284	916920
+```
+Note: `scores.txt` is tab separated and can be pasted into Excel / Google Sheets.
+Note: The first result is the player ID, followed by each map they played in chronological order.
+
 # Usage
 Create a file named `settings.py` containing your [osu! api key](https://osu.ppy.sh/p/api) in the format:  
 `apiKey = '<api token>'`

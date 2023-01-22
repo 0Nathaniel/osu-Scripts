@@ -18,9 +18,10 @@ for i, id in enumerate(ids):
     if req.status_code != 200:
         print('\rSomething went wrong getting info for', id)
         continue
-    username = req.json()[0]['username']
+    user_info = req.json()[0]
+    username, user_id = user_info['username'], user_info['user_id']
 
-    img_data = requests.get(urlprefix + id).content
+    img_data = requests.get(urlprefix + user_id).content
     with open(f'{directory}/{username}.jpg', 'wb') as handler:
         handler.write(img_data)
 

@@ -1,4 +1,5 @@
 settings.py
 **/__pycache__
 *.txt
+*.conf
 icons/
